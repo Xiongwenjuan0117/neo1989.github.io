@@ -665,9 +665,9 @@ pre {
   display: block;
   width: 4px;
   background: #eee;
-  top: -3%;
+  top: -12%;
   right: -30px;
-  bottom: -3%; }
+  bottom: -9%; }
 
 #process .present,
 #process .born {
@@ -699,12 +699,12 @@ pre {
   position: absolute;
   top: -3%;
   right: 0;
-  margin-top: -20px;
+  margin-top: -40px;
   line-height: 100%; }
 
 #process .born {
   position: absolute;
-  bottom: -3%;
+  bottom: -10%;
   right: 0;
   margin-bottom: -20px;
   line-height: 100%; }
@@ -716,7 +716,7 @@ pre {
   background-color: transparent;
   height: 15px;
   width: 15px;
-  margin-top: -13px;
+  margin-top: -29px;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
@@ -724,7 +724,7 @@ pre {
 
 #process .dot_bt {
   position: absolute;
-  bottom: -3%;
+  bottom: -9%;
   right: -35px;
   background-color: transparent;
   height: 15px;
