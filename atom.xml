@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://neo1989.net/"/>
-  <updated>2020-01-03T08:58:28.272Z</updated>
+  <updated>2020-01-09T10:27:23.528Z</updated>
   <id>https://neo1989.net/</id>
   
   <author>
@@ -17,11 +17,34 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>机器学习之数学</title>
+    <link href="https://neo1989.net/ML/math-base/"/>
+    <id>https://neo1989.net/ML/math-base/</id>
+    <published>2020-01-08T10:59:49.000Z</published>
+    <updated>2020-01-09T10:27:23.528Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="常用符号">常用符号</h4><table><thead><tr><th style="text-align:center">Symble</th><th style="text-align:center">Name</th><th style="text-align:center">Explanation / Examples</th></tr></thead><tbody><tr><td style="text-align:center">$\mathbb{R} \ \mathbf{R}$</td><td style="text-align:center">real numbers</td><td style="text-align:center">$ \pi \in \mathbb{R} $</td></tr><tr><td style="text-align:center">$\mathbb{C} \ \mathbf{C}$</td><td style="text-align:center">complex numbers</td><td style="text-align:center">$ i \in \mathbb{C} $</td></tr><tr><td style="text-align:center">$\sum$</td><td style="text-align:center">summation 求和</td><td style="text-align:center">$ \sum_{k=1}^n a_{k} = a_1 + a_2 + \dots + a_n $</td></tr><tr><td style="text-align:center">$\prod$</td><td style="text-align:center">product 积</td><td style="text-align:center">$ \prod_{k=1}^n a_{k} = a_1 \cdot a_2 \cdot \dots \cdot a_n $</td></tr><tr><td style="text-align:center">$\propto$</td><td style="text-align:center">proportionality 比例性</td><td style="text-align:center">$y \propto x$ means that y = kx for some constant k</td></tr><tr><td style="text-align:center">$\forall$</td><td style="text-align:center">universal quantification 通用量化</td><td style="text-align:center">$ \forall n \in N, n^2 \ge n $</td></tr><tr><td style="text-align:center">$\int$</td><td style="text-align:center">integral 积分</td><td style="text-align:center">$ \int_a^b x^2 dx = \frac{b^3 - a^3}{3} $</td></tr><tr><td style="text-align:center">$’$</td><td style="text-align:center">derivative 导数</td><td style="text-align:center">If $f(x) := x^2$, then $f’(x) = 2x$.</td></tr><tr><td style="text-align:center">$\partial$</td><td style="text-align:center">partial derivative 偏导数</td><td style="text-align:center">If $f(x, y) := x^2 y$, then $ \frac{\partial f}{\partial x} = 2xy $.</td></tr><tr><td style="text-align:center">$\nabla$</td><td style="text-align:center">gradient 梯度</td><td style="text-align:center">$ \nabla \cdot \overset{\rightharpoonup}{v} $ = $ \frac{\partial v_x}{\partial x} + \frac{\partial v_y}{\partial y} + \frac{\partial v_z}{\partial z}$</td></tr><tr><td style="text-align:center">$\Delta$</td><td style="text-align:center">delta</td><td style="text-align:center">$ \frac{\Delta y}{\Delta x} $ is the gradient of a straight line.</td></tr><tr><td style="text-align:center">$P(A|B)$</td><td style="text-align:center">probability 概率</td><td style="text-align:center">Probability of A given B</td></tr><tr><td style="text-align:center">$\mathrm{E}$</td><td style="text-align:center">expected value 期望值</td><td style="text-align:center">$\mathrm{E}[X]$ = $ \sum_i^\infty x_i p_i $</td></tr><tr><td style="text-align:center">$| \ldots |$</td><td style="text-align:center">determinant 行列式</td><td style="text-align:center">$ \det(u, v) = \begin{vmatrix} 1 &amp; 2 \\ 2 &amp; 9  \end{vmatrix} = 1 \times 9 - 2 \times 2 = 5 $</td></tr><tr><td style="text-align:center">$\odot$</td><td style="text-align:center">Hadamard product 哈达玛积</td><td style="text-align:center">$ \begin{vmatrix} 1 &amp; 2 \\ 2 &amp; 4 \end{vmatrix} \odot \begin{vmatrix} 1 &amp; 2 \\ 0  1 \end{vmatrix} = \begin{vmatrix} 1\cdot1 &amp; 2\cdot2 \\ 2\cdot0 &amp; 4\cdot1 \end{vmatrix} = \begin{vmatrix} 1 &amp; 4 \\ 0 &amp; 4 \end{vmatrix} $</td></tr><tr><td style="text-align:center">$\hat a$</td><td style="text-align:center">estimator 估计量</td><td style="text-align:center">$\hat \theta$ is the estimator or the estimate for the parameter $\theta$</td></tr><tr><td style="text-align:center">$\sigma$</td><td style="text-align:center">selection</td><td style="text-align:center">$ \sigma_{a \theta b} (R)  = \{t : t \in R,\ t(a) \ \theta \ t(b)\} $</td></tr></tbody></table><h4 id="激活函数">激活函数</h4><pre><code>1. Sigmoid</code></pre><p>$$<br>\begin{align}<br>S(x) = \frac{1 + e^{-x}}{1} = \frac{e^x + 1}{e^x}<br>\end{align}<br>$$</p><pre><code>2. Hyperbolic tangent (tanh) 双曲正切</code></pre><p>$$<br>\begin{align}<br>\tanh(x) = \frac{\sinh(x)}{\cosh(x)} = \frac {e^x - e^{-x}}{e^x + e^{-x}} = \frac{e^{2x} - 1}{e^{2x} + 1}<br>\end{align}<br>$$</p><pre><code>3. Rectifier (ReLU) 修正线性单元 </code></pre><p>$$<br>f(x) = x^+ = max(0, x)<br>$$</p><pre><code>4. Leaky ReLU 带泄露修正线性单元</code></pre><p>$$<br>f(x) =<br>\begin{cases}<br>x &amp;\ x \gt 0, \\<br>0.01x &amp;\ otherwise.<br>\end{cases}<br>$$</p><h4 id="微积分">微积分</h4><pre><code>1. 数列极限</code></pre><p>$$<br>\lim_{n \to \infty} x_n = a,  \forall \epsilon \gt 0，\exists \ 正整数 N，当n \gt N 时, \left| x_n - a \right| &lt; \epsilon .<br>$$</p><pre><code>2. 两个重要的极限</code></pre><p>$$<br>\lim_{x \to 0} \frac{\sin x}{x} = 1<br>$$</p><p>$$<br>\lim_{x \to \infty} (1 + \frac{1}{x})^x = e<br>$$</p><pre><code>3. 泰勒公式</code></pre><p>$$<br>f(x) = \sum_{n = 0}^{\infty} \frac{f^{(n)}(a)}{n!} \cdot (x - a^n) \\<br>f^{(n)}(a) 表示函数f在点a处的n阶导数, 如果a=0，这个级数称为麦克劳林级数。<br>$$</p><h4 id="线性代数">线性代数</h4><pre><code>1. 矩阵</code></pre><p>$$<br>A = [a_{ij}]_{m \times n}<br>$$</p><pre><code>2. 矩阵的转置</code></pre><p>$$<br>A^T = [a_{ji}]_{n \times m}<br>$$</p><pre><code>3. 秩</code></pre><p>$$<br>A = \begin{bmatrix} 1 &amp; 1 &amp; 1 &amp; 1 \\ 1 &amp; 2 &amp; 3 &amp; 4 \\ 4 &amp; 3 &amp; 2 &amp; 1 \end{bmatrix} = \begin{bmatrix} 1 &amp; 0 &amp; -1 &amp; -2 \\ 0 &amp; 1 &amp; 2 &amp; 3 \\ 0 &amp; 0 &amp; 0 &amp; 0 \end{bmatrix} \\<br>Rank(A) = Rank(A^T) = 2<br>$$</p><pre><code>4. 零空间</code></pre><p>$$<br>矩阵 A 的零空间 N(A) 就是由满足 A \cdot \overset{\rightharpoonup}{x} = 0 的所有向量 \overset{\rightharpoonup}{x} 的集合。\\<br>一个矩阵的零空间为 \overset{\rightharpoonup}{0}  的充分必要条件是这个矩阵的所有列线性无关。<br>$$</p><pre><code>5. 左零空间</code></pre><p>$$<br>矩阵 A 的左零空间是 A 的转置的零空间。 \\<br>N(A^T) = \begin{Bmatrix} \overset{\rightharpoonup}{x}| A^T \overset{\rightharpoonup}{x} = \overset{\rightharpoonup}{0} \end{Bmatrix} = \begin{Bmatrix} \overset{\rightharpoonup}{x}| \overset{\rightharpoonup}{x}^T A = \overset{\rightharpoonup}{0}^T \end{Bmatrix}<br>$$</p><pre><code>6. 列空间 (由每一列的向量张成的空间)</code></pre><p>$$<br>A_{m \times n} = \begin{bmatrix} \overset{\rightharpoonup}{v_1} &amp; \overset{\rightharpoonup}{v_2} \ldots \overset{\rightharpoonup}{v_n} \end{bmatrix}<br>$$</p><p>$$<br>\therefore \ C(A) = span(\overset{\rightharpoonup}{v_1},  \overset{\rightharpoonup}{v_2}, \ldots, \overset{\rightharpoonup}{v_n})<br>$$</p><pre><code>7. 行空间</code></pre><p>$$<br>R(A) = C(A^T)<br>$$</p><h4 id="概率论">概率论</h4><pre><code>1. 条件概率</code></pre><p>$$<br>P(A|B) = \frac{P(AB)}{P(B)}<br>$$</p><pre><code>2. 贝叶斯</code></pre><p>$$<br>\begin{align}<br>\displaystyle P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}<br>\end{align}<br>$$</p>]]></content>
+    
+    <summary type="html">
+    
+      数学工具。
+    
+    </summary>
+    
+    
+      <category term="ML" scheme="https://neo1989.net/categories/ML/"/>
+    
+    
+      <category term="Math" scheme="https://neo1989.net/tags/Math/"/>
+    
+  </entry>
+  
+  <entry>
     <title>The End Is Not the End, 2016</title>
     <link href="https://neo1989.net/Summary/2016-summary/"/>
     <id>https://neo1989.net/Summary/2016-summary/</id>
     <published>2016-12-31T14:57:48.000Z</published>
-    <updated>2020-01-03T08:58:28.272Z</updated>
+    <updated>2020-01-09T10:30:48.730Z</updated>
     
     <content type="html"><![CDATA[<h5 id="与人相处，最大的困难并不是牺牲和付出，而是理解对方的牺牲和付出。">与人相处，最大的困难并不是牺牲和付出，而是理解对方的牺牲和付出。</h5><h4 id="『2016』">『2016』</h4><pre><code>去了趟厦门。报名开始学车。第二次西装皮鞋、当伴郎。用起了Golang，React+Redux。焦虑惶恐，还不小心捡起了C/C++。生涯第三次跳槽, Python + Vuejs。搬了一次家。司司捣腾了个角落, 有书有阳光还有豆豆袋。体重保持在70KG左右。过了第二十七个生日。穿衣风格被司司逐步改善。朋友越来越少。主账户全年收益率-3.31%。入了Kindle。读了71本书。却没写几个字。</code></pre><h4 id="『2017』">『2017』</h4><pre><code>建立自信。学习更好的表达。优化自己，情绪管理、精力管理。深入学习Python、Golang、Linux。入门大数据、机器学习。带司司出趟远门。入门摄影、考虑亲自给司司拍婚纱照。学首新曲子，吉他或者口琴。有自己的家。继续学习投(chao)资(gu)。控制消费。在多读些书，得写。拿驾照。控制体重。但求平安喜乐。</code></pre>]]></content>
     
@@ -44,9 +67,9 @@
     <link href="https://neo1989.net/Summary/2015-summary/"/>
     <id>https://neo1989.net/Summary/2015-summary/</id>
     <published>2015-12-31T15:57:48.000Z</published>
-    <updated>2020-01-03T08:58:22.577Z</updated>
+    <updated>2020-01-07T13:56:32.946Z</updated>
     
-    <content type="html"><![CDATA[<h4 id="无论我们曾爱过多少人，最后留下来的，一定是那个让你习以为常的人。">无论我们曾爱过多少人，最后留下来的，一定是那个让你习以为常的人。</h4><h4 id="『2015』">『2015』</h4><pre><code>开始了新的缘分。搬了两次家。被迫放生了狗狗。涨了点工资。终于买了MBP。主账户全年收益率42.84%。Hermes改名Demeter，截至年底正收益。换了发型。重拾吉他、十孔口琴。逐渐在走深刻（装B）路线，不愿逗比。读了几本书，没记住多少。有人结婚、有人离婚、有人生娃。游泳，体重保持在70KG左右。崇明烧烤、宁波奉化漂流。接触了lua、Cloudstack、Docker、Openstack。</code></pre><h4 id="『2016』">『2016』</h4><pre><code>真诚、勇敢的爱。强化golang、docker、openstack，深入Linux底层、网络、存储。Head First PMP。要么跳槽、要么带项目。再多读些书，还得写。继续学习投(chao)资(gu)， 保持收益为正。继续深刻（装B）。英语。拿驾照。减肥增肌。拒绝过度消费（月光、年光）。出趟远门。</code></pre>]]></content>
+    <content type="html"><![CDATA[<h5 id="无论我们曾爱过多少人，最后留下来的，一定是那个让你习以为常的人。">无论我们曾爱过多少人，最后留下来的，一定是那个让你习以为常的人。</h5><h4 id="『2015』">『2015』</h4><pre><code>开始了新的缘分。搬了两次家。被迫放生了狗狗。涨了点工资。终于买了MBP。主账户全年收益率42.84%。Hermes改名Demeter，截至年底正收益。换了发型。重拾吉他、十孔口琴。逐渐在走深刻（装B）路线，不愿逗比。读了几本书，没记住多少。有人结婚、有人离婚、有人生娃。游泳，体重保持在70KG左右。崇明烧烤、宁波奉化漂流。接触了lua、Cloudstack、Docker、Openstack。</code></pre><h4 id="『2016』">『2016』</h4><pre><code>真诚、勇敢的爱。强化golang、docker、openstack，深入Linux底层、网络、存储。Head First PMP。要么跳槽、要么带项目。再多读些书，还得写。继续学习投(chao)资(gu)， 保持收益为正。继续深刻（装B）。英语。拿驾照。减肥增肌。拒绝过度消费（月光、年光）。出趟远门。</code></pre>]]></content>
     
     <summary type="html">
     
@@ -67,7 +90,7 @@
     <link href="https://neo1989.net/Summary/2014-summary/"/>
     <id>https://neo1989.net/Summary/2014-summary/</id>
     <published>2014-12-31T13:57:48.000Z</published>
-    <updated>2020-01-03T08:58:02.685Z</updated>
+    <updated>2020-01-07T13:55:31.277Z</updated>
     
     <content type="html"><![CDATA[<h5 id="大部分生活和事业上的成功来自于有意避免了一些东西：早死、错误的婚姻等等。">大部分生活和事业上的成功来自于有意避免了一些东西：早死、错误的婚姻等等。</h5><h4 id="『2014』">『2014』</h4><pre><code>跳了一次槽，被提前转正、被评优。入了Ipad、Thinkpad、Beats、Jabra。主手武器换成Python、副手Golang、投掷武器PHP，半只脚跨入虚拟化云计算。读了几本书，记录在案的17本。 - -|||投(chao)资(gu)在继续。私立了Hermes成长基金，初始资金1W，截至12-31收益率66%。夜跑了，但没养成习惯。听了Keren Ann的现场。与某人的物理距离更近了，可惜逻辑上逐渐unreachable...捡到一只奶猫，取名狗狗养了。第一次西装皮鞋、当伴郎。</code></pre><h4 id="『2015』">『2015』</h4><pre><code>要么深刻，要么有趣。OpenStack、CloudStack、Docker...DevOps。多读些书，做笔记。继续学习投(chao)资(gu)。保持Hermes年化收益率为正。Fifty Three。英语不能停。思考一些问题，写点什么。出一趟远门。换发型、穿衣风格。跑步、暴走。腹肌可见后纹个身。搬家。训练狗狗用马桶。</code></pre>]]></content>
     
@@ -90,7 +113,7 @@
     <link href="https://neo1989.net/Summary/2013-summary/"/>
     <id>https://neo1989.net/Summary/2013-summary/</id>
     <published>2013-12-31T09:35:00.000Z</published>
-    <updated>2020-01-03T08:43:22.901Z</updated>
+    <updated>2020-01-07T13:54:56.068Z</updated>
     
     <content type="html"><![CDATA[<h5 id="在错误的道路上，奔跑也没有用。">在错误的道路上，奔跑也没有用。</h5><h4 id="『2013』">『2013』</h4><pre><code>涨了一点工资。  提升了一点coding的能力。  读了一些书。去了一趟广西。开发了几个自用工具。开始交学费学习投(chao)资(gu)。</code></pre><h4 id="『2014』">『2014』</h4><pre><code>多表达，靠谱的表达。换一台PC。跳一次槽。掌握并熟练一些思维工具。再多读一些书。减少精力投入的前提下继续交学费学习投(chao)资(gu)。做晨型人并且晨跑。英语不能停。设立应急账户、旅游基金。[读研, 考驾照].pickOne()正经学习做几个拿手菜。</code></pre>]]></content>
     
