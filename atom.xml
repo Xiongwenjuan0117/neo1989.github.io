@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://neo1989.net/"/>
-  <updated>2020-09-14T07:55:19.027Z</updated>
+  <updated>2020-10-29T09:11:08.232Z</updated>
   <id>https://neo1989.net/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Machine Learning Project Checklist</title>
+    <link href="https://neo1989.net/MachineLearning/machine-learning-project-checklist/"/>
+    <id>https://neo1989.net/MachineLearning/machine-learning-project-checklist/</id>
+    <published>2020-10-29T08:04:32.000Z</published>
+    <updated>2020-10-29T09:11:08.232Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>Obviously, you should feel free to adapt this checklist to you needs.</p></blockquote><h2 id="Gists-摘要">Gists 摘要</h2><h3 id="Frame-the-Problem-and-Look-at-the-Big-Picture-架构问题，关注蓝图">Frame the Problem and Look at the Big Picture (架构问题，关注蓝图)</h3><ul><li>Define the objective in business terms.</li><li>How will your solutiion be used?</li><li>What are the current solutions/workarounds (if any)?</li><li>How should you frame this problem (supervised/unsupervised, online/offline, etc.)?</li><li>How should performance be measured?</li><li>Is the performance measure aligned with the business objective?</li><li>What would be the minimun performance needed to reach the business objective?</li><li>What are comparable problems? Can you reuse experience or tools?</li><li>Is human expertise available?</li><li>How would you solve the problem manually?</li><li>List the assumptions you (or others) have made so far.</li><li>Verify assumptions if possible.</li></ul><h3 id="Get-the-Data-获取数据">Get the Data (获取数据)</h3><pre><code>Note: automate as much as possible so you can easily get fresh data.</code></pre><ul><li>List the data you need and how much you need.</li><li>Find and document where you can get that data.</li><li>Check how much space it will take.</li><li>Check legal obligations, and get authorization if necessary.</li><li>Get access authorizations.</li><li>Create a workspace (with enough storage space).</li><li>Get the data.</li><li>Convert the data to a format you can easily manipulate (without changing the data itself).</li><li>Ensure sensitive information is deleted or protected(e.g., anonymized).</li><li>Check the size and type of data (time series, sample, geographical, etc.).</li><li>Sample a test set , put it aside, and never look at it (no data snooping!).</li></ul><h3 id="Explore-the-Data-研究数据">Explore the Data (研究数据)</h3><pre><code>Note: try to get insights from a field expert for these steps.</code></pre><ul><li>Create a copy of the data for exploration (sampling it down to manageable size if necessary).</li><li>Create a Jupyter notebook to keep a record of your data exploration.</li><li>Study each attribute and its characteristics:<ul><li>Name</li><li>Type(categorical, int/float, bounded/unbounded, text, structured, etc.)</li><li>% of missing values</li><li>Noisiness and type of noise(stochastic, outliers, rounding errors, etc.)</li><li>Possibly useful for the tasks.</li><li>Type of distribution (Gaussian, uniform, logarithmic, etc.)</li></ul></li><li>For supervised learning tasks, identify the target attribute(s).</li><li>Visualize the data.</li><li>Study the correlations between attributes.</li><li>Study how you would solve the problem manually.</li><li>Identify the promising transformations you may want to apply.</li><li>Identify extra data that would be useful (go back to “Get the Data”).</li><li>Document what you have learned.</li></ul><h3 id="Prepare-the-Data-准备数据">Prepare the Data (准备数据)</h3><pre><code>Notes:    - Work on copies of the data (keep the original dataset intact).    - Write functins for all data transformations you apply, for five reasons:        - So you can easily prepare the data the next time you get a fresh dataset        - So you can apply these transformations in future projects        - To clean and prepare the test set         - To clean and prepare new data instances once your solution is live        - To make it easy to treat your preparation choices as hyperparameters</code></pre><ul><li>Data cleaning:<ul><li>Fix or remove outliters (optional).</li><li>Fill in missing values (e.g., with zero, mean, median…) or drop their rows (or columns).</li></ul></li><li>Feature selection (optimization):<ul><li>Drop the attributes that provide no useful information for the task.</li></ul></li><li>Feature engineering, where appropriate:<ul><li>Discretize continuous feature.</li><li>Decompose features (e.g., categorical, data/time, etc.).</li><li>Add promising transformations of features (e.g., log(x), squrt(x), x^2, etc.).</li><li>Adggregate features into promising new features.</li></ul></li><li>Feature scaling: standardize or normalize feature.</li></ul><h3 id="Short-List-Promising-Models-简要列出期望的模型">Short-List Promising Models (简要列出期望的模型)</h3><pre><code>  Notes:    - If the data is huge, you may want to sample smaller training sets so you can train many different models in a reasonable time (be aware that this penalizes complex models such as large neural nets or Random Forests).    - Once again, try to automate these steps as much as possible.</code></pre><ul><li>Train many quick and dirty models from different categories (e.g., linear, naive Bayes, SVM, Random Forests, neural net, etc.) useing standard parameters.</li><li>Measure and compare their performance.<ul><li>For each model, use N-fold cross-validation and compute the mean and standard deviation of the performance measure on the N folds.</li></ul></li><li>Analyze the most significant variables for each algorithm.</li><li>Analyze the types of errors the models make.<ul><li>What data would a human have used to avoid these errors?</li></ul></li><li>Have a quick round of feature selection and engineering.</li><li>Have one or two more quick iterations of the five previous steps.</li><li>Short-list the top three to five most promising models, preferring models that make different types of errors.</li></ul><h3 id="Fine-Tune-the-System-微调系统">Fine-Tune the System (微调系统)</h3><pre><code>Notes:    - You will want to use as much data as possible for this step, especially as you move thoward the end of fine-tuning.    - As always automate what you can.</code></pre><ul><li>Fine-tune the hyperparameters using cross-validation:<ul><li>Treat your data transformation choices as hyperparameters, especially when you are not sure about them (e.g., should I replace missing values with zero or with the median value? Or just drop the rows?).</li><li>Unless there are very few hyperparameter values to explore, prefer random search over grid search, If training is very long, you many prefer a Bayesian optimization approach (e.g., using Gaussian process priors, as described by Jasper Snoek, Hugo Larochelle, and Ryan Adams (<a href="https://goo.gl/PEFfGr" target="_blank" rel="noopener">https://goo.gl/PEFfGr</a>)).</li></ul></li><li>Try Ensemble methods. Combining your best models will often perform better than running them individually.</li><li>Once you are confident about your final model, measure its performance on the test set to estimate the generalization error.</li></ul><h3 id="Present-Your-Solution-展示解决方案">Present Your Solution (展示解决方案)</h3><ul><li>Document what you have done.</li><li>Create a nice presentation.<ul><li>Make sure you highlight the big picture first.</li></ul></li><li>Explain why your solution achieves the business objective.</li><li>Don’t forget to present interesting points you noticed along the way.<ul><li>Describe what worked and what did not.</li><li>List your assumptions and your system’s limitations.</li></ul></li><li>Ensure ypur key findings are communicated through beautiful visualizations or easy-to-remember statements (e.g., “the median income is the number-one predictor of housing prices”)</li></ul><h3 id="Lanch-启动">Lanch! (启动)</h3><ul><li>Get your solution ready for production (plug into production data inputs, write unit tests, etc.).</li><li>Write monitoring code to check your system’s live performance at regular intervals and trigger alerts when it drops.<ul><li>Beware of slow degradation too: models tend to “rot” as data evolves.</li><li>Measuring performance may require a human pipeline (e.g., via a crowdsourcing service).</li><li>Also monitor your inputs’ quality (e.g., a malfuctioning sensor sending random values, or another teams’ output becoming stale). This is particularly important for online learning systems.</li></ul></li><li>Retrain your models on a regular basis on fresh data (automate as much as possible).</li></ul><h2 id="Reference-参考">Reference 参考</h2><p>[1] <a href="https://www.amazon.cn/dp/B07GSVW63X" target="_blank" rel="noopener">Hands-On Machine Learning with Scikit-Learn and TensorFlow</a></p>]]></content>
+    
+    <summary type="html">
+    
+      Guide you through your Machine Learning Projects.
+    
+    </summary>
+    
+    
+      <category term="MachineLearning" scheme="https://neo1989.net/categories/MachineLearning/"/>
+    
+    
+      <category term="Coder" scheme="https://neo1989.net/tags/Coder/"/>
+    
+  </entry>
   
   <entry>
     <title>MachineLearning 的“最佳实践”</title>
@@ -424,27 +447,6 @@
     
     
       <category term="Coder" scheme="https://neo1989.net/tags/Coder/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>The End Is Not the End, 2013</title>
-    <link href="https://neo1989.net/Summary/2013-summary/"/>
-    <id>https://neo1989.net/Summary/2013-summary/</id>
-    <published>2013-12-31T09:35:00.000Z</published>
-    <updated>2020-03-25T16:01:30.000Z</updated>
-    
-    <content type="html"><![CDATA[<h5 id="在错误的道路上，奔跑也没有用。">在错误的道路上，奔跑也没有用。</h5><h4 id="『2013』">『2013』</h4><pre><code>涨了一点工资。  提升了一点coding的能力。  读了一些书。去了一趟广西。开发了几个自用工具。开始交学费学习投(chao)资(gu)。</code></pre><h4 id="『2014』">『2014』</h4><pre><code>多表达，靠谱的表达。换一台PC。跳一次槽。掌握并熟练一些思维工具。再多读一些书。减少精力投入的前提下继续交学费学习投(chao)资(gu)。做晨型人并且晨跑。英语不能停。设立应急账户、旅游基金。[读研, 考驾照].pickOne()正经学习做几个拿手菜。</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      The summary of 2013 and new year&#39;s resolution.
-    
-    </summary>
-    
-    
-      <category term="Summary" scheme="https://neo1989.net/categories/Summary/"/>
-    
     
   </entry>
   
